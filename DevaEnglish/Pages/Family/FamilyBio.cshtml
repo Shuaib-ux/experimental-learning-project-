@@ -1,0 +1,53 @@
+﻿@page
+
+@model DevaEnglish.Pages.Family.FamilyBioModel
+@{
+    ViewData["Title"] = "FamilyBio";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Search</h2>
+<div>Search  <input asp-for="Search" /></div>
+<h2>@Model.Members[0].Surname</h2>
+
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Forename</td>
+                <td>Surname</td>
+                <td>Date of Birth</td>
+                <td>Hobby</td>
+                <td>Occupation</td>
+                <td>Phone</td>
+                <td>Mobile</td>
+                <td>Email</td>
+                <td>Miscellaneous</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Member in Model.Members)
+            {
+                <tr>
+                    <td>@Member.Forename</td>
+                    <td>@Member.Surname</td>
+                    <td>@Member.DateOfBirth</td>
+                    <td>@Member.Hobby</td>
+                    <td>@Member.Occupation</td>
+                    <td>@Member.Phone</td>
+                    <td>@Member.Mobile</td>
+                    <td>@Member.Email</td>
+                    <td>@Member.Notes</td>
+
+              
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+
+</form>

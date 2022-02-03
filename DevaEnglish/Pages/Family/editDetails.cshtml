@@ -1,0 +1,94 @@
+﻿@page "{id:int}"
+@model DevaEnglish.Pages.Family.editDetailsModel
+@{
+    ViewData["Title"] = "editDetails";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+<html>
+<head>
+
+</head>
+
+<body>
+    <h2>Enter Your Family Details</h2>
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <!--<button type="submit" asp-page-handler="Back">Back</button>-->
+            <label>Able to host</label>
+            <div>
+                Willing to host :
+                <input asp-for="details.CanHost" type="radio" id="can" value=0 />
+                <label for="can">Can host</label><br>
+                <input asp-for="details.CanHost" type="radio" id="cannot" value=1 />
+                <label for="cannot">Cannot host</label><br>
+                <input asp-for="details.CanHost" type="radio" id="maybe" value=2 />
+                <label for="maybe">Maybe host</label><br>
+                <input asp-for="details.CanHost" type="radio" id="no-response" value=3 />
+                <label for="no response">No response</label><br>
+            </div>
+            <label>Name</label>
+            <div>Name : <input asp-for="details.FamilyName" /></div>
+            <label>Preference</label>
+            Preference :
+            <input asp-for="details.SexPreference" type="radio" id="male" value=0 />
+            <label for="male">Male</label><br>
+            <input asp-for="details.SexPreference" type="radio" id="female" value=1 />
+            <label for="female">Female</label><br>
+            <input asp-for="details.SexPreference" type="radio" id="other" value=2 />
+            <label for="other">Other</label><br>
+            <input asp-for="details.SexPreference" type="radio" id="none" value=3 />
+            <label for="none">None</label><br>
+            <label>Status</label>
+            <div>Status : <input asp-for="details.FamilyStatus" /></div>
+            <label>Address</label>
+            <div>Address : <input asp-for="details.Address" /></div>
+            <label>City</label>
+            <div>City : <input asp-for="details.City" /></div>
+            <label>Postcode</label>
+            <div>Postcode : <input asp-for="details.PostCode" /></div>
+            <label>Number of cars</label>
+            <div>
+                Car no :
+                <input asp-for="details.Car" type="radio" id="no-car" value=0 />
+                <label for="no-car">No car</label><br>
+                <input asp-for="details.Car" type="radio" id="has-car" value=1 />
+                <label for="Has-car">Has car</label><br>
+            </div>
+            <label>Number of available bedrooms</label>
+            <div>Bedroom number <input asp-for="Rooms.RoomNumber" /></div>
+            <label>Diet/allergen confirmation</label>
+            <div>
+                Dietary/allergen requirements :
+                <input asp-for="details.DietAllergen" type="radio" id="no-requirements" value=false />
+                <label for="no-requirements">No requirements</label><br>
+                <input asp-for="details.DietAllergen" type="radio" id="has-requirenemts" value=true />
+                <label for="has-requirements">Has requirements</label><br>
+            </div>
+            <label>Dietary/allergen list</label>
+            <div>Dietary/allergen list : <input asp-for="Allergens.AllergenType" /></div>
+            <label>Pet confirmation</label>
+            <div>
+                Pets :
+                <input asp-for="details.Pet" type="radio" id="no-pet" value=false />
+                <label for="no-requirements">No pet</label><br>
+                <input asp-for="details.Pet" type="radio" id="has-pet" value=true />
+                <label for="has-requirements">Has pet</label><br>
+            </div>
+            <label>Pet list</label>
+            <div>Pet list <input asp-for="Pets.Type" /></div>
+            <label>Image</label>
+            <div>
+                Upload image: <br />
+                <input type="file" id="file1"
+                       name="file1"
+                       multiple="multiple" />
+            </div>
+        </div>
+        <div>
+            <button type="submit" asp-page-handler="Save">Save</button>
+        </div>
+    </form>
+
+</body>
+</html>
+<!-- will need to link this to an index page upon signing in-->

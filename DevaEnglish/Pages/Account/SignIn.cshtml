@@ -1,0 +1,32 @@
+﻿@page
+@model DevaEnglish.Pages.Account.SignInModel
+@{
+    ViewData["Tiltle"] = "SignIn";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Identity
+@using DevaEnglish.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<form id="SignInForm" method="post">
+    <div class="container col-md-offset-4 col-md-4 info loginForm">
+        
+        <p id="SignInInstructions">Please enter your login details</p>
+        <hr />
+        
+        <div  id="TextInputSignIn" class="form-group">
+            <label asp-for="Input.Email">Email:</label> <br />
+            <input asp-for="Input.Email" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        
+        <button type="submit" class="btn btn-success">Sign In</button>
+    </div>
+
+
+
+</form>
+

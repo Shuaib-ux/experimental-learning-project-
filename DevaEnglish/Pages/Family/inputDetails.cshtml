@@ -1,0 +1,140 @@
+﻿@page
+@model DevaEnglish.Pages.Family.inputDetailsModel
+@{ 
+    ViewData["Title"] = "inputDetails";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+<html>
+<head>
+
+</head>
+
+<body>
+    <div class="container" style="height: auto; width: auto;border: double; background-color: lightgrey;">
+    <h2  class="text-center">Editing Details For @Model.details.FamilyName</h2>
+    @{ System.Diagnostics.Debug.WriteLine("Family Name: " + Model.details.FamilyID);}
+
+
+
+    <form class="container" style="height:auto; width:auto; border-collapse: collapse; background-color:white;" method="post" enctype="multipart/form-data">
+        @* values not changed by the user *@
+        <input type="hidden" asp-for="details.FamilyID" />
+        <input type="hidden" asp-for="details.FamilyName" />
+        <input type="hidden" asp-for="details.FamilyStatus" />
+        <div asp-validation-summary="All"></div>
+
+
+        <div class="form-group col-auto">
+            <p class="font-weight-bold" style="font-size: 20px;">Willing to host</p>
+            <input class="form-check-input" asp-for="details.CanHost" type="radio" id="can" value=0 />
+            <label class="form-check-label" for="can">Can host</label><br>
+            <input class="form-check-input" asp-for="details.CanHost" type="radio" id="cannot" value=1 />
+            <label class="form-check-label" for="cannot">Cannot host</label><br>
+            <input class="form-check-input" asp-for="details.CanHost" type="radio" id="maybe" value=2 />
+            <label class="form-check-label" for="maybe">Maybe host</label><br>
+            <input class="form-check-input" asp-for="details.CanHost" type="radio" id="no-response" value=3 />
+            <label class="form-check-label" for="no response">No response</label><br>
+            <!--consider making this an enum-->
+            <!--may not be necessary-->
+        </div>
+        <hr>
+
+        <div class="form-group col-auto">
+            <p class="font-weight-bold" style="font-size: 20px;">Preference </p>
+            <input class="form-check-input" asp-for="details.SexPreference" type="radio" id="male" value=0 />
+            <label class="form-check-label" for="male">Male</label><br>
+            <input class="form-check-input" asp-for="details.SexPreference" type="radio" id="female" value=1 />
+            <label class="form-check-label" for="female">Female</label><br>
+            <input class="form-check-input" asp-for="details.SexPreference" type="radio" id="other" value=2 />
+            <label class="form-check-label" for="other">Other</label><br>
+            <input class="form-check-input" asp-for="details.SexPreference" type="radio" id="none" value=3 />
+            <label class="form-check-label" for="none">None</label><br>
+        </div>
+        <hr>
+        @*<div class="col-auto">
+            <p class="font-weight-bold" style="font-size: 20px;">Family Status </p>
+            <div class="form-group"> <input class="form-control" style="width:auto;" asp-for="details.FamilyStatus" placeholder="Status" /></div>
+        </div>
+        <hr>*@
+        <div class="col-auto">
+            <p class="font-weight-bold" style="font-size: 20px;">Address</p>
+            <div class="form-group"> <input class="form-control" style="width:auto;" asp-for="details.Address" placeholder="Address" /></div>
+            <div class="form-group"> <input class="form-control" style="width:auto;" asp-for="details.City" placeholder="City" /></div>
+            <div class="form-group"> <input class="form-control" style="width:auto;" asp-for="details.PostCode" placeholder="Postcode" /></div>
+        </div>
+        <hr>
+
+        <div class="form-group col-auto">
+            <p class="font-weight-bold" style="font-size: 20px;">Car Availability</p>
+            <input class="form-check-input" asp-for="details.Car" type="radio" id="no-car" value=0 />
+            <label class="form-check-label" for="no-car">No Car</label><br>
+            <input class="form-check-input" asp-for="details.Car" type="radio" id="has-car" value=1 />
+            <label class="form-check-label" for="has-car">Has Car</label><br>
+        </div>
+        <hr>
+        <div class="form-group col-auto">
+            <p class="font-weight-bold" style="font-size: 20px;">Bedrooms</p>
+            <input class="form-control" style="width:auto;" asp-for="Rooms.RoomNumber" placeholder="Bedroom No." />
+        </div>
+        <!--consider getting a limit on this-->
+        <hr>
+        <div class="form-group col-auto">
+            <!--change the name foe this to fit the student-->
+            <p class="font-weight-bold" style="font-size: 20px;">Dietary/Allergen requirements</p>
+            <input class="form-check-input" asp-for="details.DietAllergen" type="radio" id="no-requirements" value="false" />
+            <label class="form-check-label" for="no-requirements">No Requirements</label><br>
+            <input class="form-check-input" asp-for="details.DietAllergen" type="radio" id="has-requirements" value="true" />
+            <label class="form-check-label" for="has-requirements">Has Requirements</label><br>
+        </div>
+
+        <div class="form-group col-auto"> <textarea class="form-control" style="width:auto;" asp-for="Allergens.AllergenType" placeholder="Dietary/Allergen list"></textarea></div>
+        <!--consider mkaing this a multiple choice button list-->
+        <hr>
+        <div class="form-group col-auto">
+            <p class="font-weight-bold" style="font-size: 20px;"> Pets</p>
+            <input class="form-check-input" asp-for="details.Pet" type="radio" id="no-pet" value=false />
+            <label class="form-check-label" for="no-requirements">No Pet</label><br>
+            <input class="form-check-input" asp-for="details.Pet" type="radio" id="has-pet" value=true />
+            <label class="form-check-label" for="has-requirements">Has Pet</label><br>
+        </div> <div class="form-group col-auto">
+            @{
+                if (Model.details.Pet == true)
+                {
+
+                    for (int i = 0; i < Model.Pets.Count; i++)
+                    {
+                        <input type="hidden" asp-for="@Model.Pets.ElementAt(i).FamilyPetID" />
+                        <a asp-for="@Model.Pets.ElementAt(i).Type" value="@Model.Pets.ElementAt(i).Type">@Model.Pets.ElementAt(i).Type</a>
+                        // <button asp-page-handler="Delete" asp-route-PetID="@Model.Pets.ElementAt(i).FamilyPetID">Delete</button>
+                    }
+                }
+            }
+
+        </div><br>
+
+        @* Might need a loop or button to add continous pet  *@
+
+        <hr>
+        <p class="font-weight-bold" style="font-size: 20px;">Additional Images</p>
+        <p>Please attach any images of bedrooms, communial areas or other facilities </p>
+        <!--consider mkaing this a multiple choice button list-->
+        <div class="form-group col-auto">
+            Upload Image: <br />
+            <input type="file" id="file1"
+                   name="file1"
+                   multiple="multiple" />
+        </div>
+
+
+        <div class="col-auto"> <input class="form-control" style="width:auto;" asp-for="details.ImageDescription" placeholder="Image Description" /></div><br>
+
+        <div class="row justify-content-around">
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-success btn-lg">Submit </button>
+            </div>
+        </div>
+    </form>
+        </div>
+</body>
+</html>
+<!--will need to diable this once the family has submitted their family details-->

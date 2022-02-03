@@ -1,0 +1,30 @@
+﻿@page
+@model DevaEnglish.Pages.Family.AddMemberModel
+@{
+    ViewData["Title"] = "AddMember";
+    Layout = "~/Pages/_Layout.cshtml";
+
+}
+
+<html>
+<head>
+
+</head>
+<body>
+    <h1>Create</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All"></div>
+        <div>Name : <input asp-for="Members.Forename" /></div>
+        <div>Surname : <input asp-for="Members.Surname" /></div>
+        <div>Date of Birth : <input asp-for="Members.DateOfBirth" /></div>
+        <div>Hobby : <input asp-for="Members.Hobby" /></div>
+        <div>Occupation : <input asp-for="Members.Occupation" /></div>
+        <div>Telephone# : <input asp-for="Members.Phone" /></div>
+        <div>Mobile : <input asp-for="Members.Mobile" /></div>
+        <div>Email : <input asp-for="Members.Email" /></div>
+        <div>Miscellaneous : <input asp-for="Members.Notes" /></div>
+        <input type="submit" />
+    </form>
+
+</body>
+</html>

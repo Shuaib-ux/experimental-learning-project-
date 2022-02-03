@@ -1,0 +1,67 @@
+﻿@page
+@model DevaEnglish.Pages.CalendarModel
+@{
+    ViewData["Title"] = "Calendar";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+@*<table id="eventsTable">
+    @for (int i = 0; i < length; i++)
+        {
+            <tr> 
+                <td>@Model.Events.ElementAt(i).ID</td>
+                <td>@Model.Events.ElementAt(i).Title</td>
+                <td>@Model.Events.ElementAt(i).StartDate.ToString("yyyy-MM-dd")</td>
+                <td>@Model.Events.ElementAt(i).EndDate.ToString("yyyy-MM-dd")</td>
+            </tr>
+        } 
+</table>*@
+<div class="container container-fluid "> 
+<table id="categoryTable">
+    <tr>
+        <td>Category</td>
+        <td>
+            <select id="changeShowing" onchange="filterCalendar()">
+                <option value="All">View All</option>
+                <option value="Availability">Availability</option>
+                <option value="Coaches">Coaches</option>
+            </select>
+        </td>
+    </tr>
+</table>
+
+<div id="calendar"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
+<script>
+    let availabilityEventsArray = [];
+    let coachEventsArray = [];
+    let eventsArray = [];
+    @foreach(var availability in Model.AvailabilityEvents)
+    {
+        <text>
+    availabilityEventsArray.push({
+        title: '@(availability.Title)',
+        start: '@(availability.StartDate.ToString("yyyy-MM-dd"))',
+        end: '@(availability.EndDate.ToString("yyyy-MM-dd"))',
+        id: '@(availability.ID)',
+        groupId: '@(availability.GroupID)'
+    })
+     </text>
+    }
+    @foreach(var coach in Model.CoachEvents)
+    {
+        <text>
+    coachEventsArray.push({
+        title: '@(coach.Title)',
+        start: '@(coach.StartDate.ToString("yyyy-MM-dd"))',
+        end: '@(coach.EndDate.ToString("yyyy-MM-dd"))',
+        id: '@(coach.ID)',
+        groupId: '@(coach.GroupID)'
+    })
+     </text>
+    }
+    eventsArray = availabilityEventsArray.concat(coachEventsArray);
+</script>
+<script src="~/js/Calendar.js" asp-append-version="true"></script>
+</div>

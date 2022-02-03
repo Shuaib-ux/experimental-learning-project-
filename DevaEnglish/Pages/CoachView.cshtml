@@ -1,0 +1,45 @@
+﻿@page
+@model DevaEnglish.Pages.CoachViewModel
+@{
+    ViewData["Title"] = "CoachView";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<div class="table-responsive">
+    <table class="container  table-striped" id="eventsTable">
+        <tr class="container" style="background: #bababa">
+            <td>
+                <strong>Coach</strong>
+            </td>
+            <td>
+                <strong>Time coach is present</strong>
+            </td>
+            <td>
+                <strong> Meeting Point</strong>
+            </td>
+            <td>
+                <strong>Coach Families</strong>
+            </td>
+        </tr>
+
+
+        @foreach (var coach in Model.CoachList)
+        {
+            <tr class="container" style="background: #ffffff">
+                <td> @coach.Name</td>
+                <td>@coach.ArrivalDate.ToString("dd/MM/yyyy") - @coach.DepartureDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    @{//extracts the meeting point names
+                        TempData["MeetingPoint"] = Model.MeetingPoint.Where(x => x.MeetingPointID == @coach.MeetingPointID).FirstOrDefault().Name;
+                    }
+                    @TempData["MeetingPoint"]
+                </td>
+                <td>
+                    <a asp-page="/Family/FamilyPerCoach" asp-route-groupID="@coach.GroupID">
+                        <input type="button" class="btn btn-outline-success" value="View Families" />
+                    </a>
+                </td>
+            </tr>
+        }
+        </table>
+    </div>

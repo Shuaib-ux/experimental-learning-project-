@@ -1,0 +1,89 @@
+﻿@page
+@model DevaEnglish.Pages.AvailabilitiesModel
+@using System.Globalization
+@{
+    ViewData["Title"] = "Availabilities";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+<style>
+    td {
+        border-right: 1px solid #fff;
+        border-left: 1px solid #e8e8e8;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #e8e8e8;
+        padding: 10px 15px;
+        position: relative;
+    }
+
+    table {
+        background: #f5f5f5;
+        border-collapse: separate;
+        font-size: 18px;
+        line-height: 24px;
+        margin: 30px auto;
+        text-align: left;
+        width: 1200px
+    }
+</style>
+
+@if (TempData["availabilityResponse"].Equals(3))
+{
+    <div class="alert alert-danger" role="alert">
+        <p>Availability changes submission was Unsuccessful!</p>
+    </div>
+}
+<form method="post">
+    <div class="table-responsive">
+        <table class="container  table-striped" id="eventsTable">
+            <tr class="container" style="background: #bababa">
+                <td><strong> Week Number</strong></td>
+                <td><strong> Start Date</strong></td>
+                <td><strong> End Date</strong></td>
+                <td><strong> Availability Status</strong></td>
+                <td><strong> Notes</strong></td>
+            </tr>
+            @for (int i = 0; i < Model.FamilyAvailability.Count; i++)
+            {
+                CultureInfo ciCurr = CultureInfo.CurrentCulture;
+                string weekNumber = ciCurr.Calendar.GetWeekOfYear(Model.FamilyAvailability[i].StartDate, CalendarWeekRule.FirstDay, DayOfWeek.Monday).ToString();
+                string twoDigitYear = Model.FamilyAvailability[i].StartDate.ToString("yy");
+                string title = "Week No: " + weekNumber + " Year: " + twoDigitYear;
+                <tr class="container" style="background: #ffffff">
+                    <td>
+                        <strong> @title</strong>
+                        <input type="hidden" asp-for="FamilyAvailability[i].FamilyAvailabilityID" value="@Model.FamilyAvailability.ElementAt(i).FamilyAvailabilityID" />
+                        <input type="hidden" asp-for="FamilyAvailability[i].FamilyID" value="@Model.FamilyAvailability.ElementAt(i).FamilyID" />
+                    </td>
+                    <td>
+                        @Model.FamilyAvailability.ElementAt(i).StartDate.ToString("yyyy-MM-dd")
+                    <input type="hidden" asp-for="FamilyAvailability[i].StartDate" value="@Model.FamilyAvailability.ElementAt(i).StartDate" />
+                </td>
+                <td>
+                    @Model.FamilyAvailability.ElementAt(i).EndDate.ToString("yyyy-MM-dd")
+                <input type="hidden" asp-for="FamilyAvailability[i].EndDate" value="@Model.FamilyAvailability.ElementAt(i).EndDate" />
+            </td>
+            <td>
+                <select id="availabilityTable_@Model.FamilyAvailability.ElementAt(i).FamilyAvailabilityID" asp-for="FamilyAvailability[i].Status">
+                    <option value="" >Select your availability</option>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                </select>
+            </td>
+            <td>
+                <input style="" asp-for="FamilyAvailability[i].Notes" id="availabilityNotes_@Model.FamilyAvailability.ElementAt(i).FamilyAvailabilityID" type="text" />
+            </td>
+        </tr>
+    }
+        </table>
+        <div class="row justify-content-around">
+            <div class="col-xs-4">
+                <input class="font-weight-bold btn btn-success btn-lg" type="submit" value="Save" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/js/Events.js" asp-append-version="true"></script>
+
+
+

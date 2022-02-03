@@ -1,0 +1,170 @@
+﻿@page
+@model DevaEnglish.Pages.Family.Feedback_formModel
+@{
+    ViewData["Title"] = "Feedback";
+    Layout = "~/Pages/_Layout.cshtml";
+
+
+}
+@*<link rel="stylesheet" href="~/css/bootstrap.css">*@
+
+<div class="container">
+    <h2>@Model.TempData["FamilyName"] Feedback Form</h2>
+    
+
+    @if (TempData["FeedbackResponse"].Equals(1))
+    {
+        <div class="alert alert-success" role="alert">
+            <p>Feedback form successfully Submitted!</p>
+        </div>
+
+    }
+    @if (TempData["FeedbackResponse"].Equals(0))
+    {
+        <div class="alert alert-danger" role="alert">
+            <p>Feedback form  Submission was Unsuccessful!</p>
+        </div>
+
+    }
+
+
+    <p>Please fill in all fields of the feedback form</p>
+
+
+    @*<span asp-
+        -for="@Model.Scores.Home" class="text-danger"></span>*@
+<form method="post" asp-page-handler="Feedback">
+
+
+
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">The People in the host family's home</h3>
+        <span asp-validation-for="Scores.People" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.People" value="@number" id="@($"People_{number}")">
+                <label class="form-check-label" for="@($"People_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">My host family's home</h3>
+        <span asp-validation-for="Scores.Home" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.Home" value="@number" id="@($"Home_{number}")">
+                <label class="form-check-label" for="@($"Home_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">Bedroom</h3>
+        <span asp-validation-for="Scores.Bedroom" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.Bedroom" value="@number" id="@($"Bedroom_{number}")">
+                <label class="form-check-label" for="@($"Bedroom_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">Bed</h3>
+        <span asp-validation-for="Scores.Bed" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.Bed" value="@number" id="@($"Bed_{number}")">
+                <label class="form-check-label" for="@($"Bed_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">Breakfast</h3>
+        <span asp-validation-for="Scores.Breakfast" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.Breakfast" value="@number" id="@($"Breakfast_{number}")">
+                <label class="form-check-label" for="@($"Breakfast_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">Packed Lunch</h3>
+        <span asp-validation-for="Scores.Lunch" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.Lunch" value="@number" id="@($"Lunch_{number}")">
+                <label class="form-check-label" for="@($"Lunch_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+
+
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">Evening Meal</h3>
+        <span asp-validation-for="Scores.EveningMeal" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.EveningMeal" value="@number" id="@($"EveningMeal_{number}")">
+                <label class="form-check-label" for="@($"EveningMeal_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">My family helped improve my English</h3>
+        <span asp-validation-for="Scores.English" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.English" value="@number" id="@($"English_{number}")">
+                <label class="form-check-label" for="@($"English_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container radio-inline">
+        <h3 class="feedback_section_title">My family had time to speak to me</h3>
+        <span asp-validation-for="Scores.General" class="text-danger"></span>
+        @foreach (var number in Model.feedbackOptions)
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Scores.General" value="@number" id="@($"General_{number}")">
+                <label class="form-check-label" for="@($"General_{number}")">@number</label>
+
+            </div>
+        }
+    </div>
+    <div class="container">
+        <div class="form-group">
+            <h3 class="feedback_section_title">Additional Comments</h3>
+            <textarea asp-for="Scores.Notes" class="form-control" cols="70" rows="8"></textarea>
+
+        </div>
+    </div>
+
+    <div>
+
+        <input type="hidden" asp-for="Scores.FamilyID" value="@Model.ScoresFamilyID">
+        <input type="hidden" asp-for="Scores.GroupID" value="@Model.ScoresGroupID">
+    </div>
+        <div class="row justify-content-around">
+            <div class="col-xs-4">
+                <input type="submit" class="btn btn-success" onclick="return confirm('Are you want to submit the feedback?')" value="Submit Feedback" />
+       </div>
+    </div>
+
+</form>
+</div>

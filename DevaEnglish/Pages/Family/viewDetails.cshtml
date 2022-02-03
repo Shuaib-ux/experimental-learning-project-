@@ -1,0 +1,69 @@
+﻿@page 
+@model DevaEnglish.Pages.Family.ViewDetailsModel
+@{
+    ViewData["Title"] = "ViewDetails";
+    Layout = "~/Pages/_Layout.cshtml";
+    string petType = "";
+}
+<div id="TopOfViewDetails">
+    <h2 class="text-center"> Current details</h2>
+
+    @*<a asp-page="/Family/FamilyBio" asp-route-id="@Model.Rooms[0].FamilyID">
+        <input type="button" class="btn btn-outline-success" value="View Family Bio" />*@
+
+
+    <a id="EditDetailsBtn" asp-page="/Family/inputDetails">
+        <input type="button" class="btn btn-outline-success" value="Edit Details" />
+    </a>
+</div>
+    <form method="post">
+        <div class="table-responsive">
+            <table class="table">
+             
+                <tr><th>Name</th> <td>@Model.details.FamilyName</td></tr>
+                    <tr><th>Sex Preference</th> <td>@Model.details.SexPreference</td></tr>
+                    <tr><th>Address</th> <td>@Model.details.Address</td></tr>
+                    <tr><th>City</th> <td>@Model.details.City</td></tr>
+                    <tr><th>Postcode</th> <td>@Model.details.PostCode</td></tr>
+                    <tr><th>Car</th> <td>@Model.details.Car</td></tr>
+                    <tr><th>Can Host</th> <td>@Model.details.CanHost</td></tr>
+                    <tr><th>Email</th> <td>@Model.details.Email</td></tr>
+                    <tr><th>No of Rooms</th> <td>@Model.Rooms.Count</td></tr>
+                    <tr><th>Pets</th>  @foreach (var pets in Model.Pets)
+                    {
+                        if (string.IsNullOrEmpty(petType))
+                        {
+                            petType = pets.Type;
+                        }
+                        else
+                        {
+                            petType = petType + ", " + pets.Type;
+                        }
+                    }<td>@petType</td>           </tr>
+                @*<tbody>
+            @foreach (var details in Model.details)
+            {
+                <tr>
+                    <td>@details.FamilyID</td>
+                    <td>@details.FamilyName</td>
+                    <td>@details.SexPreference</td>
+                    <td>@details.Address</td>
+                    <td>@details.City</td>
+                    <td>@details.PostCode</td>
+                    <td>@details.Car</td>
+                    <td>@details.CanHost</td>
+                    <td>@details.Email</td>
+                    <td>@Model.Rooms.Count</td>
+                    @foreach (var Pets in Model.Pets)
+                    {
+                        <td>@Pets.Type</td>
+                    }
+                </tr>
+
+            }
+        </tbody>*@
+            </table>
+        </div>
+
+    </form>
+

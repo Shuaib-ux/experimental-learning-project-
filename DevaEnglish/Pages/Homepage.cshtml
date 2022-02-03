@@ -1,0 +1,112 @@
+﻿@page
+@model DevaEnglish.Pages.IndexModel
+@{
+    ViewData["Title"] = "Homepage";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+@using Microsoft.AspNetCore.Identity
+@using DevaEnglish.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@*<div class="mx-auto alert alert-warning alert-dismissible fade show" style="width: 20rem;" role="alert">
+        <strong>Update Family Details!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>*@
+
+@if (TempData["bookingResponse"].Equals(1))
+{
+    <div class="alert alert-success" role="alert">
+        <p>Booking changes successfully saved!</p>
+    </div>
+}
+@if (TempData["availabilityResponse"].Equals(1))
+{
+    <div class="alert alert-success" role="alert">
+        <p>Availability changes successfully saved!</p>
+    </div>
+}
+
+<style>
+   span {
+       font-size:medium;
+       font-family:Arial, Helvetica, sans-serif;
+       text-wrap:normal;
+   }
+    
+</style>
+<div class="container">
+
+    <div class="row d-flex justify-content-around">
+        <div class="Icon">
+            <a href="/Bookings" class="d-flex flex-sm-column">
+                <i class="material-icons text-dark" style="font-size: 100px;">book_online</i>
+                <span class="icon-text font-weight-bold text-success">Bookings</span>
+            </a>
+
+        </div>
+
+
+        <div class="Icon">
+            <a href="/Calendar" class="d-flex flex-sm-column">
+                <i class="material-icons text-dark" style="font-size: 100px;">event</i>
+                <span class="icon-text font-weight-bold text-success">Calendar</span>
+            </a>
+
+        </div>
+    </div>
+
+
+
+    @if (User.IsInRole("LocalOrganiser"))
+    {
+    <div class=" row d-flex justify-content-around">
+        <div class="Icon">
+            <a class="d-flex flex-sm-column" asp-page="/Feedback/Index_Feedback_form" asp-route-feedbackResponse="2">
+                <i class="material-icons text-dark" style="font-size: 100px;">format_list_numbered</i>
+                <span class="icon-text font-weight-bold  text-success">Enter <br /> Feedback</span>
+            </a>
+
+        </div>
+
+        <div class="Icon">
+            <a href="/CoachView" class="d-flex flex-sm-column">
+                <i class="material-icons text-dark" style="font-size: 100px;">bus_alert</i>
+                <span class="icon-text font-weight-bold  text-success"> Coaches  &<br /> Families</span>
+            </a>
+
+        </div>
+    </div>
+    }
+    <div class=" row d-flex justify-content-around">
+        <div class="Icon">
+            <a href="/Availabilities" class="d-flex flex-sm-column">
+                <i class="material-icons text-dark" style="font-size: 100px;">event_available</i>
+                <span class="icon-text font-weight-bold  text-success">Availabilities</span>
+            </a>
+
+        </div>
+
+        <div class="Icon">
+            <a asp-page="/Family/inputDetails" class="d-flex flex-sm-column">
+                <i class="material-icons text-dark" style="font-size:100px;">people</i>
+                <span class="icon-text font-weight-bold text-success">Edit My <br>Details</span>
+            </a>
+
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+   
+
+
+
+
+

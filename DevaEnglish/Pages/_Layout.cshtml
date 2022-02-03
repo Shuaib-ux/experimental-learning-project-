@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Bootstrap links-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @*Bootstrap JS library removed due to security risks*@
+
+    <link rel="stylesheet" type="text/css" href="/custom.css">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>@ViewBag.Title</title>
+</head>
+
+@using Microsoft.AspNetCore.Identity
+@using DevaEnglish.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<body style="background-color:whitesmoke;">
+    <nav class="navbar navbar-expand-lg" style="background-color:white;border-bottom:inset;" id="NavBar_Top">
+       
+
+            <img id="Linguastay_image" src="https://lirp.cdn-website.com/7edda985/dms3rep/multi/opt/logo-desktop-500w.jpg" alt="Lunguastay_Logo" data-dm-image-path="https://irp-cdn.multiscreensite.com/7edda985/dms3rep/multi/logo-desktop.jpg" onerror="handleImageLoadError(this)">
+       
+        @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>*@
+
+
+        <div id="Login_Section">
+            <div id="Username_Layout">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <p id="Username">@UserManager.GetUserName(User)</p>
+                    <a asp-page="/Account/SignOut">
+                        <input id="SignOutButton" type="button" class="btn btn-outline-danger" value="Sign Out" onclick="return confirm('Are you want to Logout?')" />
+                    </a>
+
+                }
+            </div>
+           
+        </div>
+
+
+
+    </nav>
+
+    @RenderBody()
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+
+        <nav class="fixed-bottom border-top navbar-light bg-light" id="Nav_bar_Bottom">
+            <ul class="navbar-nav flex-row nav-justified justify-content-around">
+                <li class="nav-item nav-link">
+                    <a href="/Homepage" class="nav-link d-flex flex-column ">
+                        <i class="material-icons nav-icon">grid_view</i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="nav-item nav-link">
+                    <a href="/Calendar" class="nav-link d-flex flex-column">
+                        <i class="material-icons nav-icon">event</i>
+                        <span class="nav-text">Calendar</span>
+                    </a>
+                </li>
+                <li class="nav-item nav-link">
+                    <a href="/Family/viewDetails" class="nav-link d-flex flex-column">
+                        <i class="material-icons nav-icon">people</i>
+                        <span class="nav-text">My Info</span>
+                    </a>
+                </li>
+                <li class="nav-item nav-link">
+                    <a href="/Contact/EmergencyContactPage" class="nav-link d-flex flex-column">
+                        <i class="material-icons nav-icon">info</i>
+                        <span class="nav-text">Contact</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+    }
+    </body>
+
+</html>

@@ -1,0 +1,264 @@
+﻿body {
+    margin-bottom: 81px;
+   
+}
+/*General tags*/
+a:hover{
+    text-decoration:none;
+    
+}
+
+
+p, label {
+
+    font-size: 1.3rem;
+
+}
+
+
+button {
+    margin: 2vw auto;
+}
+
+h3 {
+    font-size: 1.5em;
+
+}
+#SignOutButton {
+
+
+}
+
+#Username {
+    font-size: 1em;
+    font-weight:bold;
+
+}
+/*Layout page Top Nav Bar*/
+#Linguastay_image {
+    display: inline-block;
+    margin-left: 40vw;
+    margin-right: 5vw;
+    width: 20%;
+    height: 15%;
+}
+#SignOutButton {
+    width: 50%;
+    height: 15%;
+
+
+}
+
+#Login_Section {
+    position: relative;
+    margin-left: 20vw;
+   
+}
+#Username_Layout {
+    margin-bottom: 1vw;
+
+}
+#NavBar_Top {
+   
+    width:100%;
+}
+#Nav_bar_Bottom {
+    width:100%;
+  
+}
+nav[class="fixed-bottom border-top navbar-light bg-light"] {
+    margin-top: 5vw;
+}
+
+
+/*LogIn Page*/
+
+
+
+
+#SignInInstructions {
+    text-align: center;
+}
+
+
+
+
+
+/*Homepage  Changes*/
+/*#Container_Homepage{
+  margin-bottom: 5vw;
+}*/
+.col-sm-4 {
+    /* needs some height and bottom margin*/
+    margin: 0, 0, 1.5vw, 0;
+    padding:0;
+
+}
+.Icon {
+    text-align: center;
+    margin-bottom: .55vw;
+    margin-top: .75vw;
+}
+
+/*Feedback form css*/
+
+
+/*NOTE: Changes to the radial buttons or sections influences the myinfo, login page  page aswell*/
+
+.feedback_section_title {
+/*section title*/
+    margin-bottom: 2.5vw;
+    font-size: 2.5rem;
+
+}
+
+.form-check-label {
+/*The numbers 1-5*/
+    margin-left: 2vw;
+    margin-right: 1vw;
+}
+input[type=radio] {
+    /*radio button input*/
+    width: 2vw;
+    height: 2vw;
+}
+
+.container.radio-inline {
+
+    margin-bottom: 3vw;
+    padding:20px;
+}
+
+.form-check-input {
+    width: 1.5vw;
+    height: 1.5vw;
+}
+/*Index-Feedback Form*/
+.dropdown-item {
+    display: inline-block;
+    margin: auto, 2vw, auto, 1vw;
+    border: 2px solid black;
+}
+
+
+
+
+#CoachList, #FamilyNameList {
+    margin-bottom: 1.5vw;
+}
+
+/*FamilyPerCoach CSS tags */
+#FamilyNameTitle {
+    text-align: center;
+    margin:  auto;
+    padding: 1vw;
+    text-align: center;
+  
+    color: black;
+   
+}
+
+/*Edit my details*/
+#can, #cannot, #maybe, #no-response, #male, #female, #other, #none, #no-requirements, #has-requirements, #has-pet, #no-pet, #has-car, #no-car {
+    width: 1.55vw;
+    height: 1.55vw;
+}
+
+
+/*Sign IN form*/
+#SignInForm {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#TextInputSignIn {
+
+    margin-bottom: 0;
+}
+
+/*View details page*/
+
+#EditDetailsBtn {
+  float:right;
+   margin-top:-2.2vw;
+   margin-right: 8.5vw;
+   display:inline-block;
+}
+
+
+@media only screen and (min-width: 800px) {
+    td{
+    border-right: 1px solid #fff;
+    border-left: 1px solid #e8e8e8;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 15px;
+    position: relative;
+    }
+
+table {
+    background: #f5f5f5;
+    border-collapse: separate;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 30px auto;
+    text-align: left;
+    width: 1200px
+}
+
+}
+
+@media only screen and (max-width: 900px) {
+    /* 600 px or lower*/
+    input[type=radio], #can, #cannot, #maybe, #no-response, #male, #female, #other, #none, #no-requirements, #has-requirements, #has-pet, #no-pet, #has-car, #no-car {
+        /*radio button input*/
+        width: 5vw;
+        height: 5vw;
+    }
+
+    #Linguastay_image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        height: 50%;
+    }
+
+    #Login_Section {
+        position: inline-block;
+        width: 50%;
+        margin-left: 27vw;
+        margin-right: auto;
+    }
+
+    #Username {
+        display: none;
+    }
+
+    .feedback_section_title {
+        font-size: 1.75rem;
+    }
+
+    #SignOutButton {
+        width: 80%;
+        height: 20%;
+    }
+
+    #NavBar_Top {
+        margin-bottom: 3vw;
+    }
+
+    .Icon {
+        margin-top: 8vw;
+        display: block;
+    }
+    #EditDetailsBtn {
+       display:block;
+        margin-top: 1vw;
+        margin-right: 37vw;
+        margin-left:auto;
+        margin-bottom:3vw;
+        
+    }
+
+}

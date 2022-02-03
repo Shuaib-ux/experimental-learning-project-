@@ -1,0 +1,59 @@
+﻿@page
+@model DevaEnglish.Pages.Family.FamilyPerCoachModel
+
+@{
+    ViewData["Title"] = "FamilyPerCoachView";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+@*@using DevaEnglish.Data.**@
+
+@{Model.currentDateEqualOrGreaterThanDepatureDate = Model.departure_day(Model.CurrentGroupID);
+    //changes the value if the current date is equal to or greater than departure date
+}  
+<h2 id="FamilyNameTitle">@Model.TempData["CoachName"] </h2>
+
+<div class="table-responsive">
+     <table class="container  table-striped" id="eventsTable">
+         <tr class="container" style="background: #bababa">
+             <td>
+                 <strong>Family</strong>
+             </td>
+
+             <td>
+                 <strong>Feedback Entered/FeedbackDue</strong>
+             </td>
+             <td><strong>Add Family Feedback</strong></td>
+
+         </tr>
+
+
+
+         @foreach (var family in Model.FamilyList)
+         {
+
+          <tr class="container" style="background: #ffffff">
+
+         <td> @family.FamilyName</td>
+
+
+         <td>
+             @Model.FeedbackEntries(family.FamilyID)
+             /@Model.FeedbackAmount(family.FamilyID)
+         </td>
+         
+             @if (Model.currentDateEqualOrGreaterThanDepatureDate)
+             { //depending on the bool above, the button while be seen or not
+                 <td>
+                     <a asp-page="/Feedback/Feedback_form" asp-route-feedbackResponse="2" asp-route-groupID="@Model.CurrentGroupID" asp-route-familyID="@family.FamilyID">
+
+                         <input type="button" class="btn btn-outline-success" value="Add Feedback" />
+                     </a>
+                 </td>
+              }
+
+          </tr>
+         }
+    
+
+     </table>
+</div>
